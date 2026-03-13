@@ -1,0 +1,19 @@
+{
+	"name": "Parquet_GM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_LS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "sompaqa"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
