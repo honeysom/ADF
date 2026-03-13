@@ -3,8 +3,31 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Get Metadata_ADLS",
-				"type": "GetMetadata",
+				"name": "Filter_Values",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Lookup_Testing",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup_Testing').output.value",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(item().SIC_Code,'1110')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Lookup_Testing",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,20 +38,22 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
 					"dataset": {
-						"referenceName": "DelimitedText_GM",
+						"referenceName": "DelimitedText_CSV",
 						"type": "DatasetReference"
 					},
-					"fieldList": [
-						"exists"
-					],
-					"storeSettings": {
-						"type": "AzureBlobFSReadSettings",
-						"enablePartitionDiscovery": false
-					},
-					"formatSettings": {
-						"type": "DelimitedTextReadSettings"
-					}
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -36,7 +61,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata_ADLS",
+						"activity": "Filter_Values",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -65,7 +90,8 @@
 					"sink": {
 						"type": "ParquetSink",
 						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "MergeFiles"
 						},
 						"formatSettings": {
 							"type": "ParquetWriteSettings"
@@ -83,7 +109,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DelimitedText_GM",
+						"referenceName": "DelimitedText_CSV",
 						"type": "DatasetReference"
 					}
 				],
