@@ -1,0 +1,57 @@
+{
+	"name": "SqlServerTable_DS",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "emp_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "emp_name",
+				"type": "varchar"
+			},
+			{
+				"name": "job_title",
+				"type": "varchar"
+			},
+			{
+				"name": "manager_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "hire_date",
+				"type": "date"
+			},
+			{
+				"name": "salary",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "commission",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "dept_id",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "emp"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

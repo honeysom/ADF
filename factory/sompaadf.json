@@ -1,0 +1,9 @@
+{
+	"name": "sompaadf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "50277b7d-d072-4807-a246-db581835924b",
+		"tenantId": "6a682187-a23d-47ac-95ae-66d7f04639bb"
+	}
+}
