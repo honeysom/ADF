@@ -5,8 +5,14 @@
 		"factoryName": {
 			"value": "sompaadf"
 		},
+		"AzureDataLakeStorage_LS_accountKey": {
+			"value": ""
+		},
 		"SqlServerLS_password": {
 			"value": ""
+		},
+		"AzureDataLakeStorage_LS_properties_typeProperties_url": {
+			"value": "https://sompastorage.dfs.core.windows.net/"
 		},
 		"SqlServerLS_properties_typeProperties_server": {
 			"value": "DESKTOP-GI4RGHQ"

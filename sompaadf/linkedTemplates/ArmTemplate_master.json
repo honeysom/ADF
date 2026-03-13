@@ -7,9 +7,17 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "sompaadf"
 		},
+		"AzureDataLakeStorage_LS_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_LS'"
+		},
 		"SqlServerLS_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SqlServerLS'"
+		},
+		"AzureDataLakeStorage_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sompastorage.dfs.core.windows.net/"
 		},
 		"SqlServerLS_properties_typeProperties_server": {
 			"type": "string",
@@ -50,8 +58,14 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDataLakeStorage_LS_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage_LS_accountKey')]"
+					},
 					"SqlServerLS_password": {
 						"value": "[parameters('SqlServerLS_password')]"
+					},
+					"AzureDataLakeStorage_LS_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage_LS_properties_typeProperties_url')]"
 					},
 					"SqlServerLS_properties_typeProperties_server": {
 						"value": "[parameters('SqlServerLS_properties_typeProperties_server')]"
